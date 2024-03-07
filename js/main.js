@@ -1,4 +1,5 @@
 let deferredPrompt;
+let modalOpen = false;
 const modal = document.getElementById('modal');
 const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
@@ -10,10 +11,10 @@ window.onload = () => {
     navigator.serviceWorker
              .register('./sw.js');
   }
-
+  
   function getMessgaes() {
     $.ajax({
-      url: 'http://localhost/cgi-bin/get_pwa_messages.py',
+      url: 'https://www.48v.me/~badgetest/cgi-bin/admin/get_pwa_messages.py',
       method: 'get',
       success: (response) => {
         navigator.clearAppBadge();
@@ -45,7 +46,7 @@ window.onload = () => {
 
   function getMessageCount() {
     $.ajax({
-      url: 'http://localhost/cgi-bin/get_pwa_message_count.py',
+      url: 'https://www.48v.me/~badgetest/cgi-bin/admin/get_pwa_message_count.py',
       method: 'get',
       success: (response) => {
         if ('setAppBadge' in navigator) {
@@ -60,7 +61,7 @@ window.onload = () => {
 
   function sendMessage() {
     $.ajax({
-      url: 'http://localhost/cgi-bin/add_pwa_message.py',
+      url: 'https://www.48v.me/~badgetest/cgi-bin/admin/add_pwa_message.py',
       method: 'post',
       data: { message: "This is a sample message" },
       success: (response) => {},
@@ -71,12 +72,14 @@ window.onload = () => {
   }
 
   getMessgaes();
-  setInterval(getMessageCount, 3000);
-  setInterval(sendMessage, 30000);
+  setInterval(getMessageCount, 4000);
+  setInterval(sendMessage, 60000);
 }
 
 function showInstallWindow() {
+  if (modalOpen) return;
   modal.style.display = 'block';
+  modalOpen = true;  
 }
 
 function hideInstallWindow() {
@@ -92,7 +95,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 buttonOk.addEventListener('click', async () => {  
   hideInstallWindow();
   deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
+  await deferredPrompt.userChoice;
   deferredPrompt = null;
 });
 

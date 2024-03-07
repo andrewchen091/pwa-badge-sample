@@ -1,9 +1,9 @@
-var cacheName = 'pwa-badge';
-var filesToCache = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/main.js'
+const cacheName = 'pwa-badge';
+const filesToCache = [
+  './',
+  './index.html',
+  './css/style.css',
+  './js/main.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
