@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PWA badge sample</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="images/pwa-icon-152.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="white"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="PWA badge">
+  <meta name="msapplication-TileImage" content="images/pwa-icon-144.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body class="fullscreen">
+  <div class="container">
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <div class="modal-header">          
+          <p><b>Do you want to install?</b></p>
+        </div>
+        <!-- <div class="modal-text">
+          <img src="images/pwa-icon-128.png" />
+          <p>PWA badge sample</p>
+        </div> -->
+        <div class="modal-footer">
+          <span class="ok" id="ok">Ok</span>
+          <span class="cancel" id="cancel">Cancel</span>
+        </div>
+      </div>
+    </div>
+    <div class="message" id="message" />
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
