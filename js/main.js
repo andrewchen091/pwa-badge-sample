@@ -39,7 +39,7 @@ function viewMessage(data) {
   let str = "";
 
   for (const item of data) {
-    if (item.flag === "1") {
+    if (item.flag == "1") {
       str += "<p><b>" + item.message + "</b></p>";
     } else {
       str += "<p>" + item.message + "</p>";
@@ -58,7 +58,7 @@ function getMessageCount() {
     success: (response) => {
       if ('setAppBadge' in navigator) {
         console.log("set badge", response.count);
-        
+
         navigator.setAppBadge(response.count);
       }
     },
@@ -113,7 +113,7 @@ buttonCancel.addEventListener('click', async () => {
 });
 
 window.addEventListener('click', function(event) {
-  if (event.target === modal) {
+  if (event.target == modal) {
     hideInstallWindow();
   }
 });
