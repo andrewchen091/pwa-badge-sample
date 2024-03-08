@@ -16,7 +16,7 @@ if ('serviceWorker' in navigator) {
 
 function getMessgaes() {
   $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/admin/get_pwa_messages.py',
+    url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_messages.py',
     method: 'get',
     success: (response) => {
       navigator.clearAppBadge();
@@ -53,7 +53,7 @@ function viewMessage(data) {
 
 function getMessageCount() {
   $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/admin/get_pwa_message_count.py',
+    url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
     method: 'get',
     success: (response) => {
       if ('setAppBadge' in navigator) {
@@ -68,7 +68,7 @@ function getMessageCount() {
 
 function sendMessage() {
   $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/admin/add_pwa_message.py',
+    url: 'https://www.48v.me/~badgetest/cgi-bin/add_pwa_message.py',
     method: 'post',
     data: { message: "This is a sample message" },
     success: (response) => {},
