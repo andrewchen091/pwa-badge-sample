@@ -9,7 +9,7 @@ window.onload = () => {
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-             .register('./sw.js');
+             .register('/pwa-badge-sample/sw.js');
   }
   
   function getMessgaes() {

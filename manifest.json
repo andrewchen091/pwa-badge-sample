@@ -1,6 +1,6 @@
 {
   "name": "PWA badge sample",
-  "short_name": "PWA badge",
+  "short_name": "PWA-badge",
   "icons": [{
     "src": "images/pwa-icon-128.png",
       "sizes": "128x128",
@@ -25,9 +25,10 @@
       "src": "images/pwa-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
-    }],
+    }
+  ],
   "lang": "en-US",
-  "start_url": "https://localhost/pwa-badge-sample/index.html",
+  "start_url": "/pwa-badge-sample/badgeapp.html",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
