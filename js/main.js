@@ -59,7 +59,7 @@ function getMessageCount() {
       if ('setAppBadge' in navigator) {
         console.log("set badge", response.count);
 
-        navigator.setAppBadge(response.count);
+        navigator.setAppBadge(1);
       }
     },
     error: (e) => {
