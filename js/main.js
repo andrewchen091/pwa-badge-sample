@@ -29,6 +29,8 @@ function getMessgaes() {
   })
 }
 
+getMessgaes();
+
 function viewMessage(data) {
   if (data.length != 0) {
     localStorage.setItem('pwa-message', data);
@@ -46,6 +48,8 @@ function viewMessage(data) {
     }
   }
   
+  if (str == "") str = "No message";
+  
   const messageArea = document.getElementById("message");
   messageArea.innerHTML=str;
   messageArea.scrollTop = messageArea.scrollHeight;
@@ -57,8 +61,6 @@ function getMessageCount() {
     method: 'get',
     success: (response) => {
       if ('setAppBadge' in navigator) {
-        console.log("set badge", response.count);
-
         navigator.setAppBadge(response.count);
       }
     },
@@ -80,7 +82,6 @@ function sendMessage() {
   })
 }
 
-getMessgaes();
 setInterval(getMessageCount, 4000);
 setInterval(sendMessage, 60000);
 
