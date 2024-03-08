@@ -57,6 +57,8 @@ function getMessageCount() {
     method: 'get',
     success: (response) => {
       if ('setAppBadge' in navigator) {
+        console.log("set badge", response.count);
+        
         navigator.setAppBadge(response.count);
       }
     },
