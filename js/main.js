@@ -5,7 +5,7 @@ const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/pwa-badge-sample/sw.js')
+  navigator.serviceWorker.register('./sw.js')
   .then(function(registration) {
     console.log('Registration successful, scope is:', registration.scope);
   })
