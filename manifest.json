@@ -28,7 +28,7 @@
     }
   ],
   "lang": "en-US",
-  "start_url": "/~badgetest/badgeapp.html",
+  "start_url": "/pwa-badge-sample/badgeapp.html",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
