@@ -1,16 +1,16 @@
 const cacheName = 'pwa-badge';
 const filesToCache = [
-  '/pwa-badge-sample',
-  '/pwa-badge-sample/badgeapp.html',
-  '/pwa-badge-sample/css/style.css',
-  '/pwa-badge-sample/js/main.js',
-  '/pwa-badge-sample/images/pwa-icon-128.png',
-  '/pwa-badge-sample/images/pwa-icon-144.png',
-  '/pwa-badge-sample/images/pwa-icon-152.png',
-  '/pwa-badge-sample/images/pwa-icon-192.png',
-  '/pwa-badge-sample/images/pwa-icon-256.png',
-  '/pwa-badge-sample/images/pwa-icon-512.png',
-  '/pwa-badge-sample/manifest.json'  
+  '/~badgetest',
+  '/~badgetest/badgeapp.html',
+  '/~badgetest/css/style.css',
+  '/~badgetest/js/main.js',
+  '/~badgetest/images/pwa-icon-128.png',
+  '/~badgetest/images/pwa-icon-144.png',
+  '/~badgetest/images/pwa-icon-152.png',
+  '/~badgetest/images/pwa-icon-192.png',
+  '/~badgetest/images/pwa-icon-256.png',
+  '/~badgetest/images/pwa-icon-512.png',
+  '/~badgetest/manifest.json'  
 ];
 
 /* Start the service worker and cache all of the app's content */
