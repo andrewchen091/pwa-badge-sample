@@ -19,7 +19,7 @@ function getMessgaes() {
     url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_messages.py',
     method: 'get',
     success: (response) => {
-      navigator.clearAppBadge();
+      setBadge(0);
 
       viewMessage(response.data);
     },
@@ -60,9 +60,7 @@ function getMessageCount() {
     url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
     method: 'get',
     success: (response) => {
-      if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(response.count);
-      }
+      setBadge(response.count);
     },
     error: (e) => {
       console.log("Get message error", e);
@@ -85,7 +83,22 @@ function sendMessage() {
 setInterval(getMessageCount, 4000);
 setInterval(sendMessage, 60000);
 
-// 
+// Function App Badge
+function setBadge(badgeCount) {
+  console.log("badge", badgeCount);
+  if (window.navigator.setBadge) {
+    return window.navigator.setBadge(badgeCount);
+  } else if (window.navigator.setExperimentalBadge) {
+    return window.navigator.setExperimentalBadge(badgeCount);
+  } else if (window.navigator.setClientBadge) {
+    return window.navigator.setClientBadge(badgeCount);
+  } else if (window.ExperimentalBadge) {
+    return window.ExperimentalBadge.set(badgeCount);
+  }
+
+  return false;
+}
+
 function showInstallWindow() {
   if (modalOpen) return;
   modal.style.display = 'block';
