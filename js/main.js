@@ -60,7 +60,10 @@ function getMessageCount() {
     url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
     method: 'get',
     success: (response) => {
-      setBadge(response.count);
+      if (navigator.setAppBadge) {
+        navigator.setAppBadge(response.count);
+      }
+      //setBadge(response.count);
     },
     error: (e) => {
       console.log("Get message error", e);
