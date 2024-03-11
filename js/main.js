@@ -109,9 +109,10 @@ function hideInstallWindow() {
 }
 
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
+  //e.preventDefault();
   deferredPrompt = e;
-  setTimeout(showInstallWindow, 3000);
+  e.prompt();
+  //setTimeout(showInstallWindow, 3000);
 });
 
 buttonOk.addEventListener('click', async () => {  
