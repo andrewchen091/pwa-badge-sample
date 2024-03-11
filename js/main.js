@@ -60,10 +60,7 @@ function getMessageCount() {
     url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
     method: 'get',
     success: (response) => {
-      if (navigator.setAppBadge) {
-        navigator.setAppBadge(response.count);
-      }
-      //setBadge(response.count);
+      setBadge(response.count);
     },
     error: (e) => {
       console.log("Get message error", e);
@@ -87,19 +84,19 @@ setInterval(getMessageCount, 4000);
 setInterval(sendMessage, 60000);
 
 // Function App Badge
-function setBadge(badgeCount) {
+async function setBadge(badgeCount) {
+  await Notification.requestPermission();
+
   console.log("badge", badgeCount);
-  if (window.navigator.setBadge) {
-    return window.navigator.setBadge(badgeCount);
-  } else if (window.navigator.setExperimentalBadge) {
-    return window.navigator.setExperimentalBadge(badgeCount);
-  } else if (window.navigator.setClientBadge) {
-    return window.navigator.setClientBadge(badgeCount);
+  if (navigator.setAppBadge) {
+    navigator.setAppBadge(badgeCount);
+  } else if (navigator.setExperimentalAppBadge) {
+    navigator.setExperimentalAppBadge(badgeCount);
   } else if (window.ExperimentalBadge) {
-    return window.ExperimentalBadge.set(badgeCount);
+    window.ExperimentalBadge.set(badgeCount);
   }
 
-  return false;
+  console.log("App badge is unsupported.");
 }
 
 function showInstallWindow() {
