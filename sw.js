@@ -65,8 +65,7 @@ async function networkFirst(request) {
     const cachedResponse = await dynamicCache.match(request);
     
     return cachedResponse;
-  }
-  
+  }  
 }
 
 self.addEventListener('activate', function(e) {
