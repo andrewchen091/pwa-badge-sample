@@ -7,22 +7,10 @@ const buttonCancel = document.getElementById('cancel');
 window.addEventListener('focus', function() {
   document.getElementById('pwa').innerHTML = "<b>PWA badge sample - focus</b>";
 
-  if ('getInstalledRelatedApps' in window.navigator) {
-    window.navigator.getInstalledRelatedApps()
-      .then((relatedApps) => {
-        console.log("relatedApps:", relatedApps)
-        const isInstalled = relatedApps.some(app => app.id === 'PWA badge sample');
-        if (isInstalled) {
-          console.log('PWA app is installed.');
-        } else {
-          console.log('PWA app is not installed.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error checking installed apps:', error);
-      });
+  if (window.matchMedia('(display-mode: standalone)').matches) {  
+    console.log("app installed");
   } else {
-    console.log('getInstalledRelatedApps not supported.');
+    console.log("app is not installed");
   }
 });
 
