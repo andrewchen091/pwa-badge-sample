@@ -112,7 +112,7 @@ async function setBadge(badgeCount) {
 
 function showInstallWindow() {
   if (modalOpen) return;
-  document.getElementById("ok").click();
+  modal.style.display = 'block';
   modalOpen = true;  
 }
 
@@ -122,13 +122,13 @@ function hideInstallWindow() {
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
-  deferredPrompt = e;  
+  deferredPrompt = e;
+
+  setTimeout(showInstallWindow, 3000);
 });
 
-setTimeout(showInstallWindow, 3000);
-
 buttonOk.addEventListener('click', async () => {  
-  //hideInstallWindow();
+  hideInstallWindow();
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt = null;
