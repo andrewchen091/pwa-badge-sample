@@ -4,18 +4,6 @@ const modal = document.getElementById('modal');
 const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
 
-window.addEventListener('focus', function() {
-  console.log("focus");
-});
-
-window.addEventListener('blur', function() {
-  console.log("blur")
-});
-
-window.addEventListener('load', function() {
-  console.log("load");
-});
-
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
   .then(function(registration) {

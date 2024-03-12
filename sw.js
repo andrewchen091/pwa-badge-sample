@@ -89,3 +89,7 @@ self.addEventListener('activate', function(e) {
     })
   );
 });
+
+self.addEventListener('notificationclick', function(e) {
+  console.log("notificationclick");
+});
