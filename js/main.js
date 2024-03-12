@@ -110,12 +110,13 @@ function hideInstallWindow() {
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
-  deferredPrompt = e;
-  setTimeout(showInstallWindow, 3000);
+  deferredPrompt = e;  
 });
 
+setTimeout(showInstallWindow, 3000);
+
 buttonOk.addEventListener('click', async () => {  
-  hideInstallWindow();
+  //hideInstallWindow();
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt = null;
