@@ -32,6 +32,7 @@ self.addEventListener('install', function(e) {
 /* Serve cached content when offline */
 self.addEventListener('fetch', function(e) {
   if (!(e.request.url.startsWith('http:') || e.request.url.startsWith('https:'))) return;
+  if (e.request.method == "POST") return;
 
   const url = new URL(e.request.url);
   
