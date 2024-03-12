@@ -5,21 +5,16 @@ const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
 
 window.addEventListener('focus', function() {
-  document.getElementById('pwa').innerHTML = "<b>PWA badge sample - focus</b>";
-
-  if (window.matchMedia('(display-mode: standalone)').matches) {  
+  if (window.matchMedia('(display-mode: standalone)').matches) {
     console.log("app installed");
+    getMessgaes();
   } else {
     console.log("app is not installed");
   }
 });
 
-window.addEventListener('blur', function() {
-  document.getElementById('pwa').innerHTML = "<b>PWA badge sample</b>";
-});
-
 window.addEventListener('load', function() {
-  console.log("load");
+  getMessgaes();
 });
 
 if ('serviceWorker' in navigator) {
@@ -46,8 +41,6 @@ function getMessgaes() {
     }
   })
 }
-
-getMessgaes();
 
 function viewMessage(data) {
   if (data.length != 0) {
