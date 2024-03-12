@@ -10,6 +10,7 @@ window.addEventListener('focus', function() {
   if ('getInstalledRelatedApps' in window.navigator) {
     window.navigator.getInstalledRelatedApps()
       .then((relatedApps) => {
+        console.log("relatedApps:", relatedApps)
         const isInstalled = relatedApps.some(app => app.id === 'PWA badge sample');
         if (isInstalled) {
           console.log('PWA app is installed.');
