@@ -94,18 +94,11 @@ self.addEventListener('activate', function(e) {
 function getMessageCount() {
   const formData = new URLSearchParams();
 
-  fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py', {
-    method: 'POST',
-    body: formData,
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  })
+  fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py')
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-
-      console.log(data);
+      setBadge(data.count);
     }
   });
 }
