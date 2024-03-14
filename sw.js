@@ -93,8 +93,6 @@ self.addEventListener('activate', function(e) {
 });
 
 function getMessageCount() {
-  alert("getMessageCount");
-
   fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py')
   .then(response => response.json())
   .then(data => {

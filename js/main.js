@@ -4,20 +4,6 @@ const modal = document.getElementById('modal');
 const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
 
-window.addEventListener('focus', function() {
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    console.log("app installed");
-    getMessgaes();
-  } else {
-    console.log("app is not installed");
-  }
-});
-
-window.addEventListener('load', async function() {
-  getMessgaes();
-  await Notification.requestPermission();
-});
-
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
   .then(function(registration) {
@@ -65,15 +51,23 @@ function viewMessage(data) {
 }
 
 function sendMessage() {
-  $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/add_pwa_message.py',
-    method: 'post',
-    data: { message: "This is a sample message" },
-    success: (response) => {},
-    error: (e) => {
-      console.log("Add message error", e)
-    }
+  const formData = new URLSearchParams();
+  formData.append('message', "This is a sample message");
+
+  fetch('https://www.48v.me/~badgetest/cgi-bin/add_pwa_message.py', {
+      method: 'POST',
+      body: formData,
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+      }
   })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+    } else {
+      console.log("Add message error", e);
+    }
+  });
 }
 
 setInterval(sendMessage, 60000);
@@ -128,4 +122,18 @@ window.addEventListener('click', function(event) {
 window.addEventListener('appinstalled', () => {
   console.log("app already install");
   deferredPrompt = null;
+});
+
+window.addEventListener('focus', function() {
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log("app installed");
+    getMessgaes();
+  } else {
+    console.log("app is not installed");
+  }
+});
+
+window.addEventListener('load', async function() {
+  getMessgaes();
+  await Notification.requestPermission();
 });
