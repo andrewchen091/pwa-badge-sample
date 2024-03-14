@@ -104,7 +104,8 @@ function getMessageCount() {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      setBadge(response.count);
+
+      console.log(data, response);
     }
   });
 }
