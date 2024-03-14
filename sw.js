@@ -36,7 +36,6 @@ self.addEventListener('fetch', function(e) {
 
   const url = new URL(e.request.url);
   
-  console.log("fetch", e);
   if (url.origin == location.origin) {
     // Static files cache
     e.respondWith(cacheFirst(e.request));
@@ -57,6 +56,7 @@ async function networkFirst(request) {
   try {
     const networkResponse = await fetch(request);
     
+    console.log("networkResponse", request.url, networkResponse);
     // Cache the dynamic API response
     dynamicCache.put(request, networkResponse.clone()).catch((error) => {
       console.warn(request.url + ": " + error.message);
