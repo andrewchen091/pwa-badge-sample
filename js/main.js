@@ -15,6 +15,7 @@ window.addEventListener('focus', function() {
 
 window.addEventListener('load', function() {
   getMessgaes();
+  await Notification.requestPermission();
 });
 
 if ('serviceWorker' in navigator) {
@@ -66,19 +67,6 @@ function viewMessage(data) {
   messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-function getMessageCount() {
-  $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
-    method: 'get',
-    success: (response) => {
-      setBadge(response.count);
-    },
-    error: (e) => {
-      console.log("Get message error", e);
-    }
-  })
-}
-
 function sendMessage() {
   $.ajax({
     url: 'https://www.48v.me/~badgetest/cgi-bin/add_pwa_message.py',
@@ -91,13 +79,10 @@ function sendMessage() {
   })
 }
 
-setInterval(getMessageCount, 4000);
 setInterval(sendMessage, 60000);
 
 // Function App Badge
-async function setBadge(badgeCount) {
-  await Notification.requestPermission();
-
+function setBadge(badgeCount) {
   if (navigator.setAppBadge) {
     navigator.setAppBadge(badgeCount);
   } else if (navigator.setExperimentalAppBadge) {

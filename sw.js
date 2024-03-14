@@ -56,7 +56,7 @@ async function networkFirst(request) {
   try {
     const networkResponse = await fetch(request);
     
-    console.log("networkResponse", request.url, networkResponse);
+    // console.log("networkResponse", request.url, networkResponse);
     // Cache the dynamic API response
     dynamicCache.put(request, networkResponse.clone()).catch((error) => {
       console.warn(request.url + ": " + error.message);
@@ -90,3 +90,31 @@ self.addEventListener('activate', function(e) {
     })
   );
 });
+
+function getMessageCount() {
+  $.ajax({
+    url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
+    method: 'get',
+    success: (response) => {
+      setBadge(response.count);
+    },
+    error: (e) => {
+      console.log("Get message error", e);
+    }
+  })
+}
+
+// Function App Badge
+function setBadge(badgeCount) {
+  if (navigator.setAppBadge) {
+    navigator.setAppBadge(badgeCount);
+  } else if (navigator.setExperimentalAppBadge) {
+    navigator.setExperimentalAppBadge(badgeCount);
+  } else if (window.ExperimentalBadge) {
+    window.ExperimentalBadge.set(badgeCount);
+  } else {
+    console.log("App badge is unsupported.");
+  }
+}
+
+setInterval(getMessageCount, 4000);
