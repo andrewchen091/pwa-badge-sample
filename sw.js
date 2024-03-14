@@ -92,16 +92,21 @@ self.addEventListener('activate', function(e) {
 });
 
 function getMessageCount() {
-  $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py',
-    method: 'get',
-    success: (response) => {
-      setBadge(response.count);
-    },
-    error: (e) => {
-      console.log("Get message error", e);
+  const formData = new URLSearchParams();
+
+  fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py', {
+    method: 'POST',
+    body: formData,
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
   })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      setBadge(response.count);
+    }
+  });
 }
 
 // Function App Badge
