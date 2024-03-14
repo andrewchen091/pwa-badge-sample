@@ -31,7 +31,7 @@ function viewMessage(data) {
     localStorage.setItem('pwa-message', data);
   } else {
     data = localStorage.getItem('pwa-message');
-    
+
     if (data == null) data = [];
   }
 
@@ -54,14 +54,14 @@ function viewMessage(data) {
 
 function sendMessage() {
   const formData = new URLSearchParams();
-  formData.append('message', "This is a sample message");
+  formData.append('message', "This is a sample message, time is ok");
 
   fetch('https://www.48v.me/~badgetest/cgi-bin/add_pwa_message.py', {
-      method: 'POST',
-      body: formData,
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-      }
+    method: 'POST',
+    body: formData,
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
   })
   .then(response => response.json())
   .then(data => {
