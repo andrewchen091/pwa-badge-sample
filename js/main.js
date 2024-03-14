@@ -13,7 +13,7 @@ window.addEventListener('focus', function() {
   }
 });
 
-window.addEventListener('load', function() {
+window.addEventListener('load', async function() {
   getMessgaes();
   await Notification.requestPermission();
 });
