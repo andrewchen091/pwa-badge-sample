@@ -105,7 +105,7 @@ function getMessageCount() {
   .then(data => {
     if (data.success) {
 
-      console.log(data, response);
+      console.log(data);
     }
   });
 }
