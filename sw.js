@@ -34,6 +34,7 @@ self.addEventListener('fetch', function(e) {
   if (!(e.request.url.startsWith('http:') || e.request.url.startsWith('https:'))) return;
   if (e.request.method == "POST") return;
 
+
   const url = new URL(e.request.url);
   
   if (url.origin == location.origin) {
@@ -92,7 +93,7 @@ self.addEventListener('activate', function(e) {
 });
 
 function getMessageCount() {
-  const formData = new URLSearchParams();
+  alert("getMessageCount");
 
   fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_message_count.py')
   .then(response => response.json())

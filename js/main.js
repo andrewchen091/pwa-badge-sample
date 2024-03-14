@@ -29,18 +29,15 @@ if ('serviceWorker' in navigator) {
 }
 
 function getMessgaes() {
-  $.ajax({
-    url: 'https://www.48v.me/~badgetest/cgi-bin/get_pwa_messages.py',
-    method: 'get',
-    success: (response) => {
+  fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_messages.py')
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
       setBadge(0);
 
-      viewMessage(response.data);
-    },
-    error: (e) => {
-      console.log("Get messages error", e);
+      viewMessage(data.data);
     }
-  })
+  });
 }
 
 function viewMessage(data) {
