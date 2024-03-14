@@ -30,7 +30,9 @@ function viewMessage(data) {
   if (data.length != 0) {
     localStorage.setItem('pwa-message', data);
   } else {
-    data = localStorage.getItem('pwa-message')
+    data = localStorage.getItem('pwa-message');
+    
+    if (data == null) data = [];
   }
 
   let str = "";
