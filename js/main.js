@@ -3,8 +3,6 @@ let modalOpen = false;
 const modal = document.getElementById('modal');
 const modalandroid = document.getElementById('modal-android');
 const modalios = document.getElementById('modal-ios');
-const buttonOk = document.getElementById('ok');
-const buttonCancel = document.getElementById('cancel');
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
@@ -134,7 +132,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   deferredPrompt = e;
 });
 
-buttonOk.addEventListener('click', async () => {  
+document.getElementById('ok');.addEventListener('click', async () => {  
   hideInstallWindow();
 
   if (deferredPrompt != null) {
@@ -144,7 +142,35 @@ buttonOk.addEventListener('click', async () => {
   }
 });
 
-buttonCancel.addEventListener('click', async () => {
+document.getElementById('cancel');.addEventListener('click', async () => {
+  hideInstallWindow();
+});
+
+document.getElementById('androidok');.addEventListener('click', async () => {  
+  hideInstallWindow();
+
+  if (deferredPrompt != null) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
+});
+
+document.getElementById('androidcancel');.addEventListener('click', async () => {
+  hideInstallWindow();
+});
+
+document.getElementById('iosok');.addEventListener('click', async () => {  
+  hideInstallWindow();
+
+  if (deferredPrompt != null) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
+});
+
+document.getElementById('ioscancel');.addEventListener('click', async () => {
   hideInstallWindow();
 });
 
