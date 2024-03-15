@@ -116,13 +116,9 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  navigator.serviceWorker.ready.then((registration) => {
-    registration.showNotification("PWA Sample", {
-      body: "A new message has arrived.",
-      icon: "../images/touch/chrome-touch-icon-192x192.png",
-      vibrate: [200, 100, 200, 100, 200, 100, 200],
-      tag: "pwa-sample",
-    });
+  registration.showNotification("PWA Sample", {
+    body: "A new message has arrived.",
+    icon: "../images/touch/chrome-touch-icon-192x192.png"
   });
 
   //if (/Android/.test(userAgent)) {
