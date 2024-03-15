@@ -1,6 +1,8 @@
 let deferredPrompt;
 let modalOpen = false;
 const modal = document.getElementById('modal');
+const modalandroid = document.getElementById('modal-anroid');
+const modalios = document.getElementById('modal-ios');
 const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
 
@@ -93,26 +95,61 @@ function clearBadge() {
 
 function showInstallWindow() {
   if (modalOpen) return;
-  modal.style.display = 'block';
+  let os = getOS();
+
+  modal.style.display = 'none';
+  modalandroid.style.display = 'none';
+  modalios.style.display = 'none';
+
+  if (os == "Android") {
+    modalandroid.style.display = 'block';
+  } else if (os == "iOS") {
+    modalios.style.display = "block";
+  } else {
+    modal.style.display = "block";
+  }
+
   modalOpen = true;  
 }
 
 function hideInstallWindow() {
   modal.style.display = 'none';
+  modalandroid.style.display = 'none';
+  modalios.style.display = 'none';
 }
+
+function getOS() {
+  const userAgent = window.navigator.userAgent,
+      platform = window.navigator.platform,
+      iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+      os = null;
+
+  if (/Android/.test(userAgent)) {
+    os = 'Android';
+  } else if (iosPlatforms.indexOf(platform) !== -1) {
+    os = 'iOS';
+  } else {
+    os = 'Desktop';
+  }
+
+  return os;
+}
+
+setTimeout(showInstallWindow, 3000);
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-
-  setTimeout(showInstallWindow, 3000);
 });
 
 buttonOk.addEventListener('click', async () => {  
   hideInstallWindow();
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
+
+  if (deferredPrompt != null) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
 });
 
 buttonCancel.addEventListener('click', async () => {
@@ -120,7 +157,7 @@ buttonCancel.addEventListener('click', async () => {
 });
 
 window.addEventListener('click', function(event) {
-  if (event.target == modal) {
+  if (event.target == modal || event.target == modalandroid || event.target == modalios) {
     hideInstallWindow();
   }
 });

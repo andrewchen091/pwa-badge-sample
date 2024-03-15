@@ -122,19 +122,27 @@ function setBadge(badgeCount) {
   } else {
     console.log("App badge is unsupported.");
   }
-  
-  if (navigator.setClientBadge) {
-    navigator.setClientBadge(badgeCount);
+
+  if (/Android/.test(userAgent)) {
+    if (Notification.permission == "granted") {
+      showNotification();
+    } else if (Notification.permission == "denied") {
+      Notification.requestPermission(status => {
+        if (status == 'granted') {
+          showNotification();
+        }
+      })
+    }
   }
 
-  // if (/Android/.test(userAgent)) {
-    registration.showNotification("PWA Sample", {
-      body: "A new message has arrived.",
-      icon: "images/pwa-icon-192.png"
-    });    
-  // }
-
   count = badgeCount;  
+}
+
+function showNotification() {
+  registration.showNotification("PWA Sample", {
+    body: "A new message has arrived.",
+    icon: "images/pwa-icon-192.png"
+  }); 
 }
 
 setInterval(getMessageCount, 4000);
