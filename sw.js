@@ -116,13 +116,13 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  if (/Android/.test(userAgent)) {
+  //if (/Android/.test(userAgent)) {
     const title = "PWA badge";
     const icon = '';
     const body = "Message to be displayed";
 
     let notification = new Notification(title, { body, icon });
-  }  
+  //}  
 }
 
 setInterval(getMessageCount, 4000);
