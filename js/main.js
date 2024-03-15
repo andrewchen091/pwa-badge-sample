@@ -122,7 +122,7 @@ function getOS() {
   const userAgent = window.navigator.userAgent,
       platform = window.navigator.platform,
       iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-      os = null;
+      os = "";
 
   if (/Android/.test(userAgent)) {
     os = 'Android';
