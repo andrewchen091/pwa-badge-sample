@@ -117,7 +117,7 @@ function setBadge(badgeCount) {
   }
 
   if (platform.toLowerCase().includes('android')) {
-    let title = "";
+    let title = "PWA badge";
     let icon = '';
     let body = "Message to be displayed";
 
