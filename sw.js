@@ -104,7 +104,7 @@ function getMessageCount() {
 
 // Function App Badge
 function setBadge(badgeCount) {
-  const platform = navigator.platform;
+  const userAgent = window.navigator.userAgent;
 
   if (navigator.setAppBadge) {
     navigator.setAppBadge(badgeCount);
@@ -116,10 +116,10 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  if (platform.toLowerCase().includes('android')) {
-    let title = "PWA badge";
-    let icon = '';
-    let body = "Message to be displayed";
+  if (/Android/.test(userAgent)) {
+    const title = "PWA badge";
+    const icon = '';
+    const body = "Message to be displayed";
 
     let notification = new Notification(title, { body, icon });
   }  
