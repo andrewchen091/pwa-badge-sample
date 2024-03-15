@@ -129,7 +129,7 @@ function getOS() {
   } else if (iosPlatforms.indexOf(platform) !== -1) {
     os = 'iOS';
   } else {
-    os = 'Desktop';
+    os = 'pc';
   }
 
   return os;
