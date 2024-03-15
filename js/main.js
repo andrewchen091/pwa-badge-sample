@@ -76,12 +76,18 @@ setInterval(sendMessage, 60000);
 
 // Function App Badge
 function clearBadge() {
-  if (navigator.clearAppBadge) {
-    navigator.clearAppBadge();
-  } else if (navigator.clearExperimentalAppBadge) {
-    navigator.clearExperimentalAppBadge();
-  } else if (window.ExperimentalBadge) {
-    window.ExperimentalBadge.clear();
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    if (navigator.clearAppBadge) {
+      navigator.clearAppBadge();
+    } else if (navigator.clearExperimentalAppBadge) {
+      navigator.clearExperimentalAppBadge();
+    } else if (window.ExperimentalBadge) {
+      window.ExperimentalBadge.clear();
+    }
+  } else {
+    if (navigator.clearClientBadge) {
+      navigator.clearClientBadge();
+    }
   }
 }
 
@@ -136,4 +142,8 @@ window.addEventListener('focus', function() {
 window.addEventListener('load', async function() {
   getMessgaes();
   await Notification.requestPermission();
+});
+
+document.getElementById('loadmessage').addEventListener('click', () => {
+  getMessgaes();
 });
