@@ -19,7 +19,7 @@ function getMessgaes() {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      setBadge(0);
+      clearBadge();
 
       viewMessage(data.data);
     }
@@ -75,15 +75,13 @@ function sendMessage() {
 setInterval(sendMessage, 60000);
 
 // Function App Badge
-function setBadge(badgeCount) {
-  if (navigator.setAppBadge) {
-    navigator.setAppBadge(badgeCount);
-  } else if (navigator.setExperimentalAppBadge) {
-    navigator.setExperimentalAppBadge(badgeCount);
+function clearBadge() {
+  if (navigator.clearAppBadge) {
+    navigator.clearAppBadge();
+  } else if (navigator.clearExperimentalAppBadge) {
+    navigator.clearExperimentalAppBadge();
   } else if (window.ExperimentalBadge) {
-    window.ExperimentalBadge.set(badgeCount);
-  } else {
-    console.log("App badge is unsupported.");
+    window.ExperimentalBadge.clear();
   }
 }
 

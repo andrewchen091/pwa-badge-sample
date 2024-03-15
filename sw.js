@@ -12,6 +12,7 @@ const filesToCache = [
   '/pwa-badge-sample/images/pwa-icon-512.png',
   '/pwa-badge-sample/manifest.json'  
 ];
+let count = 0;
 
 /* Start the service worker and cache all of the app's content */
 self.addEventListener('install', function(e) {
@@ -57,7 +58,6 @@ async function networkFirst(request) {
   try {
     const networkResponse = await fetch(request);
     
-    // console.log("networkResponse", request.url, networkResponse);
     // Cache the dynamic API response
     dynamicCache.put(request, networkResponse.clone()).catch((error) => {
       console.warn(request.url + ": " + error.message);
@@ -104,6 +104,13 @@ function getMessageCount() {
 
 // Function App Badge
 function setBadge(badgeCount) {
+  if (badgeCount == 0) {
+    count = 0;
+    return;
+  } else if (badgeCount == count) {
+    return;
+  }
+
   const userAgent = navigator.userAgent;
 
   if (navigator.setAppBadge) {
@@ -121,7 +128,9 @@ function setBadge(badgeCount) {
       body: "A new message has arrived.",
       icon: "../images/touch/chrome-touch-icon-192x192.png"
     });    
-  }  
+  }
+
+  count = badgeCount;  
 }
 
 setInterval(getMessageCount, 4000);
