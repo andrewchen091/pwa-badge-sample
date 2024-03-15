@@ -142,7 +142,7 @@ document.getElementById('ok');.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('cancel');.addEventListener('click', async () => {
+document.getElementById('cancel');.addEventListener('click', () => {
   hideInstallWindow();
 });
 
@@ -156,7 +156,7 @@ document.getElementById('androidok');.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('androidcancel');.addEventListener('click', async () => {
+document.getElementById('androidcancel');.addEventListener('click', () => {
   hideInstallWindow();
 });
 
@@ -170,7 +170,7 @@ document.getElementById('iosok');.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('ioscancel');.addEventListener('click', async () => {
+document.getElementById('ioscancel');.addEventListener('click', () => {
   hideInstallWindow();
 });
 
