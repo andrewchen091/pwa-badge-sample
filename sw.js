@@ -124,19 +124,13 @@ function setBadge(badgeCount) {
   }
 
   if (/Android/.test(userAgent)) {
-    if (Notification.permission == "granted") {
-      showNotification();
-    }
+    registration.showNotification("PWA Sample", {
+      body: "A new message has arrived.",
+      icon: "images/pwa-icon-192.png"
+    });
   }
 
   count = badgeCount;  
-}
-
-function showNotification() {
-  registration.showNotification("PWA Sample", {
-    body: "A new message has arrived.",
-    icon: "images/pwa-icon-192.png"
-  }); 
 }
 
 setInterval(getMessageCount, 4000);
