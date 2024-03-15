@@ -104,7 +104,7 @@ function getMessageCount() {
 
 // Function App Badge
 function setBadge(badgeCount) {
-  const userAgent = window.navigator.userAgent;
+  const userAgent = navigator.userAgent;
 
   if (navigator.setAppBadge) {
     navigator.setAppBadge(badgeCount);
