@@ -1,7 +1,7 @@
 let deferredPrompt;
 let modalOpen = false;
 const modal = document.getElementById('modal');
-const modalandroid = document.getElementById('modal-anroid');
+const modalandroid = document.getElementById('modal-android');
 const modalios = document.getElementById('modal-ios');
 const buttonOk = document.getElementById('ok');
 const buttonCancel = document.getElementById('cancel');
