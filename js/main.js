@@ -110,6 +110,16 @@ function hideInstallWindow() {
   modalios.style.display = 'none';
 }
 
+async function showPrompt() {
+  hideInstallWindow();
+
+  if (deferredPrompt != null) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
+}
+
 function getOS() {
   const userAgent = window.navigator.userAgent,
       platform = window.navigator.platform,
@@ -130,48 +140,6 @@ function getOS() {
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-});
-
-document.getElementById('ok').addEventListener('click', async () => {  
-  hideInstallWindow();
-
-  if (deferredPrompt != null) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  }
-});
-
-document.getElementById('cancel').addEventListener('click', () => {
-  hideInstallWindow();
-});
-
-document.getElementById('androidok').addEventListener('click', async () => {  
-  hideInstallWindow();
-
-  if (deferredPrompt != null) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  }
-});
-
-document.getElementById('androidcancel').addEventListener('click', () => {
-  hideInstallWindow();
-});
-
-document.getElementById('iosok').addEventListener('click', async () => {  
-  hideInstallWindow();
-
-  if (deferredPrompt != null) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  }
-});
-
-document.getElementById('ioscancel').addEventListener('click', () => {
-  hideInstallWindow();
 });
 
 window.addEventListener('click', function(event) {
@@ -199,6 +167,13 @@ window.addEventListener('load', async function() {
   if (Notification.permission != "granted") {
     await Notification.requestPermission()
   }
+
+  document.getElementById('ok').addEventListener('click', showPrompt);
+  document.getElementById('cancel').addEventListener('click', hideInstallWindow);
+  document.getElementById('androidok').addEventListener('click', showPrompt);
+  document.getElementById('androidcancel').addEventListener('click', hideInstallWindow);
+  document.getElementById('iosok').addEventListener('click', showPrompt);
+  document.getElementById('ioscancel').addEventListener('click', hideInstallWindow);
 });
 
 setTimeout(showInstallWindow, 3000);
