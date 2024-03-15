@@ -54,7 +54,8 @@ function viewMessage(data) {
 
 function sendMessage() {
   const formData = new URLSearchParams();
-  formData.append('message', "This is a sample message, time is ok");
+  const currenttime = getCurrentDateTime();
+  formData.append('message', "This is a sample message, serialnumber is " + currenttime);
 
   fetch('https://www.48v.me/~badgetest/cgi-bin/add_pwa_message.py', {
     method: 'POST',
@@ -70,6 +71,23 @@ function sendMessage() {
       console.log("Add message error", e);
     }
   });
+}
+
+function getCurrentDateTime() {
+  const now = new Date();
+
+  // Get year, month, day, hour, minute, second
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hour = String(now.getHours()).padStart(2, '0');
+  const minute = String(now.getMinutes()).padStart(2, '0');
+  const second = String(now.getSeconds()).padStart(2, '0');
+
+  // Combine the components to form the datetime string
+  const datetime = year + month + day + hour + minute + second;
+
+  return datetime;
 }
 
 setInterval(sendMessage, 60000);
