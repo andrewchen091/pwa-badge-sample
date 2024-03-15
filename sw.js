@@ -126,12 +126,6 @@ function setBadge(badgeCount) {
   // if (/Android/.test(userAgent)) {
     if (Notification.permission == "granted") {
       showNotification();
-    } else if (Notification.permission == "denied") {      
-      Notification.requestPermission().then((status) => {
-        if (status == 'granted') {
-          showNotification();
-        }
-      })
     }
   // }
 

@@ -121,15 +121,15 @@ function hideInstallWindow() {
 function getOS() {
   const userAgent = window.navigator.userAgent,
       platform = window.navigator.platform,
-      iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-      os = "";
+      iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+  let os = "";
 
   if (/Android/.test(userAgent)) {
     os = 'Android';
   } else if (iosPlatforms.indexOf(platform) !== -1) {
     os = 'iOS';
   } else {
-    os = 'pc';
+    os = 'Desktop';
   }
 
   return os;
@@ -178,7 +178,9 @@ window.addEventListener('focus', function() {
 
 window.addEventListener('load', async function() {
   getMessgaes();
-  await Notification.requestPermission();
+  if (Notification.permission != "granted") {
+    await Notification.requestPermission()
+  }
 });
 
 document.getElementById('loadmessage').addEventListener('click', () => {
