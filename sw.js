@@ -123,7 +123,7 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  if (/Android/.test(userAgent)) {
+  // if (/Android/.test(userAgent)) {
     if (Notification.permission == "granted") {
       showNotification();
     } else if (Notification.permission == "denied") {
@@ -133,7 +133,7 @@ function setBadge(badgeCount) {
         }
       })
     }
-  }
+  // }
 
   count = badgeCount;  
 }
