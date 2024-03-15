@@ -132,7 +132,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   deferredPrompt = e;
 });
 
-document.getElementById('ok');.addEventListener('click', async () => {  
+document.getElementById('ok').addEventListener('click', async () => {  
   hideInstallWindow();
 
   if (deferredPrompt != null) {
@@ -142,25 +142,11 @@ document.getElementById('ok');.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('cancel');.addEventListener('click', () => {
+document.getElementById('cancel').addEventListener('click', () => {
   hideInstallWindow();
 });
 
-document.getElementById('androidok');.addEventListener('click', async () => {  
-  hideInstallWindow();
-
-  if (deferredPrompt != null) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  }
-});
-
-document.getElementById('androidcancel');.addEventListener('click', () => {
-  hideInstallWindow();
-});
-
-document.getElementById('iosok');.addEventListener('click', async () => {  
+document.getElementById('androidok').addEventListener('click', async () => {  
   hideInstallWindow();
 
   if (deferredPrompt != null) {
@@ -170,7 +156,21 @@ document.getElementById('iosok');.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('ioscancel');.addEventListener('click', () => {
+document.getElementById('androidcancel').addEventListener('click', () => {
+  hideInstallWindow();
+});
+
+document.getElementById('iosok').addEventListener('click', async () => {  
+  hideInstallWindow();
+
+  if (deferredPrompt != null) {
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
+});
+
+document.getElementById('ioscancel').addEventListener('click', () => {
   hideInstallWindow();
 });
 
