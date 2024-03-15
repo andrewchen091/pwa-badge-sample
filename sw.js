@@ -113,21 +113,19 @@ function setBadge(badgeCount) {
 
   const userAgent = navigator.userAgent;
 
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    if (navigator.setAppBadge) {
-      navigator.setAppBadge(badgeCount);
-    } else if (navigator.setExperimentalAppBadge) {
-      navigator.setExperimentalAppBadge(badgeCount);
-    } else if (window.ExperimentalBadge) {
-      window.ExperimentalBadge.set(badgeCount);
-    } else {
-      console.log("App badge is unsupported.");
-    }
+  if (navigator.setAppBadge) {
+    navigator.setAppBadge(badgeCount);
+  } else if (navigator.setExperimentalAppBadge) {
+    navigator.setExperimentalAppBadge(badgeCount);
+  } else if (window.ExperimentalBadge) {
+    window.ExperimentalBadge.set(badgeCount);
   } else {
-    if (navigator.setClientBadge) {
-      navigator.setClientBadge(badgeCount);
-    }
-  }  
+    console.log("App badge is unsupported.");
+  }
+  
+  if (navigator.setClientBadge) {
+    navigator.setClientBadge(badgeCount);
+  }
 
   // if (/Android/.test(userAgent)) {
     registration.showNotification("PWA Sample", {
