@@ -149,13 +149,11 @@ window.addEventListener('click', function(event) {
 });
 
 window.addEventListener('appinstalled', () => {
-  console.log("app already install");
   deferredPrompt = null;
 });
 
 window.addEventListener('focus', function() {
   if (window.matchMedia('(display-mode: standalone)').matches) {
-    console.log("app installed");
     getMessgaes();
   } else {
     console.log("app is not installed");
@@ -164,9 +162,7 @@ window.addEventListener('focus', function() {
 
 window.addEventListener('load', async function() {
   getMessgaes();
-  if (Notification.permission != "granted") {
-    await Notification.requestPermission()
-  }
+  await Notification.requestPermission();
 
   document.getElementById('ok').addEventListener('click', showPrompt);
   document.getElementById('cancel').addEventListener('click', hideInstallWindow);

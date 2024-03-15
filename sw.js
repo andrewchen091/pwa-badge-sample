@@ -4,6 +4,10 @@ const filesToCache = [
   '/pwa-badge-sample/badgeapp.html',
   '/pwa-badge-sample/css/style.css',
   '/pwa-badge-sample/js/main.js',
+  '/pwa-badge-sample/images/android-home.png',
+  '/pwa-badge-sample/iamges/android-share.png',
+  '/pwa-badge-sample/images/ios-home.png',
+  '/pwa-badge-sample/images/ios-share.png',
   '/pwa-badge-sample/images/pwa-icon-128.png',
   '/pwa-badge-sample/images/pwa-icon-144.png',
   '/pwa-badge-sample/images/pwa-icon-152.png',
@@ -130,7 +134,7 @@ function setBadge(badgeCount) {
     });
   }
 
-  count = badgeCount;  
+  count = badgeCount;
 }
 
 setInterval(getMessageCount, 4000);
