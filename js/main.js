@@ -78,24 +78,18 @@ setInterval(sendMessage, 60000);
 
 // Function App Badge
 function clearBadge() {
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    if (navigator.clearAppBadge) {
-      navigator.clearAppBadge();
-    } else if (navigator.clearExperimentalAppBadge) {
-      navigator.clearExperimentalAppBadge();
-    } else if (window.ExperimentalBadge) {
-      window.ExperimentalBadge.clear();
-    }
-  } else {
-    if (navigator.clearClientBadge) {
-      navigator.clearClientBadge();
-    }
+  if (navigator.clearAppBadge) {
+    navigator.clearAppBadge();
+  } else if (navigator.clearExperimentalAppBadge) {
+    navigator.clearExperimentalAppBadge();
+  } else if (window.ExperimentalBadge) {
+    window.ExperimentalBadge.clear();
   }
 }
 
 function showInstallWindow() {
-  if (modalOpen) return;
-  let os = getOS();
+  const os = getOS();
+  if (modalOpen || (os != "iOS" && deferredPrompt == null)) return;  
 
   modal.style.display = 'none';
   modalandroid.style.display = 'none';
@@ -134,8 +128,6 @@ function getOS() {
 
   return os;
 }
-
-setTimeout(showInstallWindow, 3000);
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
@@ -182,6 +174,8 @@ window.addEventListener('load', async function() {
     await Notification.requestPermission()
   }
 });
+
+setTimeout(showInstallWindow, 3000);
 
 document.getElementById('loadmessage').addEventListener('click', () => {
   getMessgaes();
