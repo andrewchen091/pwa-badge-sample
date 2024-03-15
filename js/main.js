@@ -32,8 +32,6 @@ function viewMessage(data) {
   } else {
     data = localStorage.getItem('pwa-message');
 
-    console.log("data", data);
-
     if (data == null) data = [];
   }
 
@@ -103,6 +101,8 @@ function clearBadge() {
   } else if (window.ExperimentalBadge) {
     window.ExperimentalBadge.clear();
   }
+
+  browser.notifications.clear();
 }
 
 function showInstallWindow() {

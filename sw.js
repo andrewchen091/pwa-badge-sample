@@ -127,12 +127,12 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  if (/Android/.test(userAgent)) {
-    registration.showNotification("PWA Sample", {
+  // if (/Android/.test(userAgent)) {
+    self.showNotification("PWA Sample", {
       body: "A new message has arrived.",
       icon: "images/pwa-icon-192.png"
     });
-  }
+  // }
 
   count = badgeCount;
 }
