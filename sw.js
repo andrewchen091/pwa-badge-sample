@@ -104,6 +104,8 @@ function getMessageCount() {
 
 // Function App Badge
 function setBadge(badgeCount) {
+  const platform = navigator.platform;
+
   if (navigator.setAppBadge) {
     navigator.setAppBadge(badgeCount);
   } else if (navigator.setExperimentalAppBadge) {
@@ -113,6 +115,14 @@ function setBadge(badgeCount) {
   } else {
     console.log("App badge is unsupported.");
   }
+
+  if (platform.toLowerCase().includes('android')) {
+    let title = "";
+    let icon = '';
+    let body = "Message to be displayed";
+
+    let notification = new Notification(title, { body, icon });
+  }  
 }
 
 setInterval(getMessageCount, 4000);
