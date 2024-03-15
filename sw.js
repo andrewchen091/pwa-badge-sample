@@ -116,14 +116,12 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  registration.showNotification("PWA Sample", {
-    body: "A new message has arrived.",
-    icon: "../images/touch/chrome-touch-icon-192x192.png"
-  });
-
-  //if (/Android/.test(userAgent)) {
-    
-  //}  
+  if (/Android/.test(userAgent)) {
+    registration.showNotification("PWA Sample", {
+      body: "A new message has arrived.",
+      icon: "../images/touch/chrome-touch-icon-192x192.png"
+    });    
+  }  
 }
 
 setInterval(getMessageCount, 4000);
