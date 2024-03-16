@@ -5,7 +5,7 @@ const filesToCache = [
   '/pwa-badge-sample/css/style.css',
   '/pwa-badge-sample/js/main.js',
   '/pwa-badge-sample/images/android-home.png',
-  '/pwa-badge-sample/iamges/android-share.png',
+  '/pwa-badge-sample/images/android-share.png',
   '/pwa-badge-sample/images/ios-home.png',
   '/pwa-badge-sample/images/ios-share.png',
   '/pwa-badge-sample/images/pwa-icon-128.png',
