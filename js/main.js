@@ -174,7 +174,7 @@ window.addEventListener('appinstalled', () => {
 
 window.addEventListener('focus', function() {
   if (window.matchMedia('(display-mode: standalone)').matches) {
-    getMessgaes();
+    //getMessgaes();
   } else {
     console.log("app is not installed");
   }
