@@ -16,6 +16,7 @@ if ('serviceWorker' in navigator) {
 }
 
 function getMessgaes() {
+  console.log("getmessage");
   fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_messages.py')
   .then(response => response.json())
   .then(data => {
