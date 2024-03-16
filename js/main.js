@@ -101,8 +101,6 @@ function clearBadge() {
   } else if (window.ExperimentalBadge) {
     window.ExperimentalBadge.clear();
   }
-
-  browser.notifications.clear();
 }
 
 function showInstallWindow() {
