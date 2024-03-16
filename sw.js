@@ -128,7 +128,7 @@ function setBadge(badgeCount) {
   }
 
   // if (/Android/.test(userAgent)) {
-    self.showNotification("PWA Sample", {
+    registration.showNotification("PWA Sample", {
       body: "A new message has arrived.",
       icon: "images/pwa-icon-192.png"
     });
