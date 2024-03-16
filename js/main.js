@@ -1,5 +1,6 @@
 let deferredPrompt;
 let modalOpen = false;
+let _focus = true;
 const modal = document.getElementById('modal');
 const modalandroid = document.getElementById('modal-android');
 const modalios = document.getElementById('modal-ios');
@@ -171,11 +172,20 @@ window.addEventListener('appinstalled', () => {
 });
 
 window.addEventListener('focus', function() {
+  console.log("focus");
+  if (_focus) return;
+
   if (window.matchMedia('(display-mode: standalone)').matches) {
-    //getMessgaes();
+    getMessgaes();
   } else {
     console.log("app is not installed");
   }
+  _focus = true;
+});
+
+window.addEventListener('blur', () => {
+  console.log("blur");
+  _focus = false;
 });
 
 window.addEventListener('load', async function() {
