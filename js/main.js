@@ -16,7 +16,6 @@ if ('serviceWorker' in navigator) {
 }
 
 function getMessgaes() {
-  console.log("getmessage");
   fetch('https://www.48v.me/~badgetest/cgi-bin/get_pwa_messages.py')
   .then(response => response.json())
   .then(data => {
@@ -173,7 +172,6 @@ window.addEventListener('appinstalled', () => {
 });
 
 window.addEventListener('focus', function() {
-  console.log("focus");
   if (_focus) return;
 
   if (window.matchMedia('(display-mode: standalone)').matches) {
@@ -185,7 +183,6 @@ window.addEventListener('focus', function() {
 });
 
 window.addEventListener('blur', () => {
-  console.log("blur");
   _focus = false;
 });
 

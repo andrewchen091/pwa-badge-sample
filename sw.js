@@ -116,6 +116,8 @@ function setBadge(badgeCount) {
   }
 
   const userAgent = navigator.userAgent;
+  const platform = navigator.platform;
+  const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
 
   if (navigator.setAppBadge) {
     navigator.setAppBadge(badgeCount);
@@ -127,12 +129,12 @@ function setBadge(badgeCount) {
     console.log("App badge is unsupported.");
   }
 
-  // if (/Android/.test(userAgent)) {
+  if (/Android/.test(userAgent) || iosPlatforms.indexOf(platform) !== -1) {
     registration.showNotification("PWA Sample", {
       body: "A new message has arrived.",
       icon: "images/pwa-icon-192.png"
     });
-  // }
+  }
 
   count = badgeCount;
 }
